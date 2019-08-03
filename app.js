@@ -1,4 +1,6 @@
-let current = '';
+let currentTime = '';
+const sound = new Audio("https://www.freespecialeffects.co.uk/soundfx/animals/duck1.wav");
+sound.loop = true;
 
 const formatDay = (index) => {
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -23,7 +25,7 @@ const displayDateTime = () => {
   const s = formatNumber(current.getSeconds());
   const displayedTime = document.getElementById("time");
   displayedTime.innerText = `${h}:${m}:${s}`;
-  current = displayedTime.innerText;
+  currentTime = displayedTime.innerText;
 };
 
 const addOptions = (field, range) => {
@@ -48,18 +50,22 @@ const getAlarmTime = () => {
 };
 
 const startAlarm = () => {
-  const sound = new Audio("https://www.freespecialeffects.co.uk/soundfx/animals/duck1.wav");
-  sound.loop = true;
-
   document.getElementById('alarm-hour').disabled = true;
   document.getElementById('alarm-minute').disabled = true;
   document.getElementById('alarm-second').disabled = true;
 
   setInterval(() => {
-    if (current === getAlarmTime()) {
+    if (currentTime === getAlarmTime()) {
       sound.play();
     }
   }, 1000);
+};
+
+const cancelAlarm = () => {
+  document.getElementById('alarm-hour').disabled = false;
+  document.getElementById('alarm-minute').disabled = false;
+  document.getElementById('alarm-second').disabled = false;
+  sound.pause();
 };
 
 document.addEventListener("DOMContentLoaded", () => {
