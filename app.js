@@ -49,16 +49,26 @@ const getAlarmTime = () => {
   return `${h}:${m}:${s}`;
 };
 
+const setMessage = (message) => {
+  const messageContainer = document.getElementById('message');
+  messageContainer.innerHTML = '';
+  messageContainer.insertAdjacentHTML("beforeend", message);
+}
+
 const startAlarm = () => {
-  console.log(currentTime);
-  console.log(getAlarmTime());
   document.getElementById('alarm-hour').disabled = true;
   document.getElementById('alarm-minute').disabled = true;
   document.getElementById('alarm-second').disabled = true;
 
+  const infoMessage = `<div class="alert alert-info" role="alert">Alarm was set</div>`
+  setMessage(infoMessage);
+
   setInterval(() => {
     if (currentTime === getAlarmTime()) {
       sound.play();
+
+      const dangerMessage = `<div class="alert alert-danger" role="alert">It's time!!!</div>`
+      setMessage(dangerMessage);
       console.log("alarm time");
     }
   }, 1000);
@@ -69,6 +79,8 @@ const cancelAlarm = () => {
   document.getElementById('alarm-minute').disabled = false;
   document.getElementById('alarm-second').disabled = false;
   sound.pause();
+  const warningMessage = `<div class="alert alert-warning" role="alert">Alarm was cancelled</div>`
+  setMessage(warningMessage);
 };
 
 document.addEventListener("DOMContentLoaded", () => {

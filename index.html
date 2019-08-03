@@ -16,14 +16,18 @@
     <h3 id="date"></h3>
     <h3 id="time"></h3>
 
-    <ul class="list-inline">
+    <ul class="list-inline mb-0 mt-5">
       <li class="list-inline-item"><p>Set your alarm: </p></li>
       <li class="list-inline-item">
         <select id='alarm-hour' ></select>
+        <span>:</span>
         <select id='alarm-minute' ></select>
+        <span>:</span>
         <select id='alarm-second' ></select>
       </li>
     </ul>
+    <div id="message">
+    </div>
     <button id="start" type="button" class="btn btn-outline-primary">Start</button>
     <button id="cancel" type="button" class="btn btn-outline-primary">Cancel</button>
   </div>
