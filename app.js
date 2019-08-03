@@ -1,5 +1,5 @@
 let currentTime = '';
-const sound = new Audio("https://www.freespecialeffects.co.uk/soundfx/animals/duck1.wav");
+const sound = new Audio('sound.mp3');
 sound.loop = true;
 
 const formatDay = (index) => {
@@ -43,13 +43,15 @@ const getAlarmTime = () => {
   const hour = document.getElementById('alarm-hour');
   const minute = document.getElementById('alarm-minute');
   const second = document.getElementById('alarm-second');
-  const h = hour.options[hour.selectedIndex].value;
-  const m = minute.options[minute.selectedIndex].value;
-  const s = second.options[second.selectedIndex].value;
+  const h = formatNumber(hour.options[hour.selectedIndex].value);
+  const m = formatNumber(minute.options[minute.selectedIndex].value);
+  const s = formatNumber(second.options[second.selectedIndex].value);
   return `${h}:${m}:${s}`;
 };
 
 const startAlarm = () => {
+  console.log(currentTime);
+  console.log(getAlarmTime());
   document.getElementById('alarm-hour').disabled = true;
   document.getElementById('alarm-minute').disabled = true;
   document.getElementById('alarm-second').disabled = true;
@@ -57,6 +59,7 @@ const startAlarm = () => {
   setInterval(() => {
     if (currentTime === getAlarmTime()) {
       sound.play();
+      console.log("alarm time");
     }
   }, 1000);
 };
