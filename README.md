@@ -1,2 +1,2 @@
 # Alarm clock
-**** Built with JavaScript.
+#### Built with JavaScript.
